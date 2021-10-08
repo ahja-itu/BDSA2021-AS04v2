@@ -1,6 +1,6 @@
 namespace Assignment4.Entities
 {
-    public class UserRepository
+    public class UserRepository : 
     {
     }
 }
