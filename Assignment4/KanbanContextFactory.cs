@@ -8,7 +8,7 @@ namespace Assignment4
 {
     public class KanbanContextFactory : IDesignTimeDbContextFactory<KanbanContext>
     {
-        public KanbanContext CreateDbContext(string[] args)
+        public  KanbanContext CreateDbContext(string[] args)
         {
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
