@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Assignment4.Core;
 using System.Linq;
 
@@ -101,7 +102,10 @@ namespace Assignment4.Entities
 
         public IReadOnlyCollection<TagDTO> ReadAll()
         {
-            throw new System.NotImplementedException();
+            var tagDTOs = from tag in _context.Tags
+                          select new TagDTO(tag.Id, tag.Name);
+                          
+            return new ReadOnlyCollection<TagDTO>(tagDTOs.ToArray());
         }
 
         public Response Update(TagUpdateDTO tag)

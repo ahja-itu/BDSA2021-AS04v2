@@ -148,5 +148,15 @@ namespace Assignment4.Entities.Tests
 
             Assert.Null(entity);
         }
+
+        [Fact]
+        public void ReadAll_returns_all_two_tags_Buzzword_and_Urgent()
+        {
+            var tags = _repo.ReadAll();
+
+            Assert.Collection(tags,
+                t => Assert.Equal(new TagDTO(1, "Buzzword"), t),
+                t => Assert.Equal(new TagDTO(2, "Urgent"), t));
+        }
     }
 }
