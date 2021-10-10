@@ -30,6 +30,14 @@ namespace Assignment4.Entities
 
             try
             {
+                // Make sure the email is not associated with an existing user
+                var existingUser = _context.Users.FirstOrDefault(u => u.Email == user.Email);
+                
+                if (existingUser != null)
+                {
+                    return (Response.Conflict, -1);
+                }
+
                 var newUser = new User
                 {
                     Name = user.Name,

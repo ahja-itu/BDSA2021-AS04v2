@@ -83,6 +83,17 @@ namespace Assignment4.Entities.Tests
             Assert.Equal(-1, uid);
         }
 
+        [Fact]
+        public void Create_given_email_in_use_should_return_conflict_response()
+        {
+            var entity = new UserCreateDTO { Name = "Robert", Email = "uncle@bob.com" };
+
+            (Response response, int uid) = _repo.Create(entity);
+
+            Assert.Equal(Response.Conflict, response);
+            Assert.Equal(-1, uid);
+        }
+
 
         [Fact]
         public void Delete_delete_the_example_user_should_return_deleted_response()
