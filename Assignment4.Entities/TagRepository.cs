@@ -15,20 +15,6 @@ namespace Assignment4.Entities
             _context = context;
         }
 
-        /*
-
-            [X] Tags which are assigned to a task may only be deleted using the force.
-            [X] Trying to delete a tag in use without the force should return Conflict.
-            [X] Trying to create a tag which exists already should return Conflict.
-
-
-            [X] Trying to update or delete a non-existing entity should return NotFound.
-            [X] Create, Read, and Update should return a proper Response.
-            [X] Your are not allowed to write throw new ... - use the Response instead.
-            [X] If a task, tag, or user is not found, return null.
-
-        */
-
         public (Response Response, int TagId) Create(TagCreateDTO tag)
         {
             if (IsEmpty(tag.Name))
