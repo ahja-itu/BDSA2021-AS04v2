@@ -128,6 +128,25 @@ namespace Assignment4.Entities.Tests
             Assert.Equal(Response.Deleted, response);
         }
 
-        
+        [Fact]
+        public void Read_given_id_1_should_return_buzzword_tag()
+        {
+            var tid = 1;
+
+            var entity = _repo.Read(tid);
+
+            Assert.Equal("Buzzword", entity.Name);
+            Assert.Equal(tid, entity.Id);
+        }
+
+        [Fact]
+        public void Read_given_id_1337_which_no_tag_exists_with_that_id_should_return_null()
+        {
+            var tid = 1337;
+
+            var entity = _repo.Read(tid);
+
+            Assert.Null(entity);
+        }
     }
 }
