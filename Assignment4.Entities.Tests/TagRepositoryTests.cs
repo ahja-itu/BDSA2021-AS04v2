@@ -158,5 +158,54 @@ namespace Assignment4.Entities.Tests
                 t => Assert.Equal(new TagDTO(1, "Buzzword"), t),
                 t => Assert.Equal(new TagDTO(2, "Urgent"), t));
         }
+
+        [Fact]
+        public void Update_existing_tag_should_return_updated_response()
+        {
+            var tag = _context.Tags.Find(1);
+            var updateTagDTO = new TagUpdateDTO { Id = tag.Id, Name = "Busy" };
+
+            var response = _repo.Update(updateTagDTO);
+            var updatedTag = _context.Tags.Find(1);
+
+            Assert.Equal(Response.Updated, response);
+            Assert.Equal("Busy", updatedTag.Name);
+            Assert.Equal(1, updatedTag.Id);
+        }
+
+        [Fact]
+        public void Update_tag_dto_has_missing_id_returns_bad_request()
+        {
+            var tag = _context.Tags.Find(1);
+            var updateTagDTO = new TagUpdateDTO { Name = "Busy" };
+
+            var response = _repo.Update(updateTagDTO);
+
+            Assert.Equal(Response.BadRequest, response);
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData("   ")]
+        [InlineData(null)]
+        public void Update_tag_dto_has_missing_or_empty_name_returns_bad_request(string name)
+        {
+            var tag = _context.Tags.Find(1);
+            var updateTagDTO = new TagUpdateDTO { Id = tag.Id, Name = name };
+
+            var response = _repo.Update(updateTagDTO);
+
+            Assert.Equal(Response.BadRequest, response);
+        }
+
+        [Fact]
+        public void Update_non_existing_tag_should_return_not_found()
+        {
+            var updateTagDTO = new TagUpdateDTO { Id = 1337, Name = "Awesome" };
+
+            var response = _repo.Update(updateTagDTO);
+
+            Assert.Equal(Response.NotFound, response);
+        }
     }
 }

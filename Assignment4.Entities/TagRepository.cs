@@ -23,9 +23,9 @@ namespace Assignment4.Entities
 
 
             [X] Trying to update or delete a non-existing entity should return NotFound.
-            Create, Read, and Update should return a proper Response.
-            Your are not allowed to write throw new ... - use the Response instead.
-            If a task, tag, or user is not found, return null.
+            [X] Create, Read, and Update should return a proper Response.
+            [X] Your are not allowed to write throw new ... - use the Response instead.
+            [X] If a task, tag, or user is not found, return null.
 
         */
 
@@ -72,7 +72,7 @@ namespace Assignment4.Entities
                 if (force)
                 {
 
-                    foreach(var task in tasksWithTag)
+                    foreach (var task in tasksWithTag)
                     {
                         task.tags.Remove(tag);
                         _context.Tasks.Update(task);
@@ -104,13 +104,31 @@ namespace Assignment4.Entities
         {
             var tagDTOs = from tag in _context.Tags
                           select new TagDTO(tag.Id, tag.Name);
-                          
+
             return new ReadOnlyCollection<TagDTO>(tagDTOs.ToArray());
         }
 
         public Response Update(TagUpdateDTO tag)
         {
-            throw new System.NotImplementedException();
+            // This is a weird decision: if not setting tag id, then it defaults to 0
+            // as per int standards. This might mean that client forgot to set it
+            // as I'm assuming here. My reasoning is that IDs in the DB starts from 1
+            // so id 0 should be a mistake.
+            if (tag.Id == 0 || IsEmpty(tag.Name)) {
+                return Response.BadRequest;
+            }
+
+            var oldTag = _context.Tags.Find(tag.Id);
+            if (oldTag == null)
+            {
+                return Response.NotFound;
+            }
+
+            oldTag.Name = tag.Name;
+            _context.Tags.Update(oldTag);
+            _context.SaveChanges();
+
+            return Response.Updated;
         }
 
 
