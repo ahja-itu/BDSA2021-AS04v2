@@ -369,56 +369,18 @@ namespace Assignment4.Entities.Tests
         [Fact]
         public void All_should_get_all_5_tasks()
         {
-        //Given
+            //Given
             var tag = _context.Tags.Find(1);
-        //When
+            //When
             var tasks = _repo.All();
         
-        //Then
-        Assert.Collection(tasks,
-            t => Assert.Equal(
-                new TaskDTO 
-                { 
-                    Id = 1, 
-                    Title = "Original Task",
-                    Description = "Original Description",
-                    Tags = new ReadOnlyCollection<String>(_context.Tags.Where(t => t.Id == 1).Select(t => t.Name).ToArray()),
-                    AssignedToId = 1,
-                    State = State.New
-                }, t),
-            t => Assert.Equal(
-                new TaskDTO
-                { 
-                    Id = 2, 
-                    Title = "Active Task",
-                    Description = "Original Description",
-                    State = State.Active
-                }, t),
-            t => Assert.Equal(
-                new TaskDTO
-                { 
-                    Id = 3, 
-                    Title = "Resolved Task",
-                    Description = "Original Description",
-                    State = State.Resolved
-                }, t),
-            t => Assert.Equal(
-                new TaskDTO
-                { 
-                    Id = 4, 
-                    Title = "Removed Task",
-                    Description = "Original Description",
-                    State = State.Removed
-                }, t),
-            t => Assert.Equal(
-                new TaskDTO
-                { 
-                    Id = 5, 
-                    Title = "Closed Task",
-                    Description = "Original Description",
-                    State = State.Closed
-                }, t));
-        }
-
+            //Then
+            Assert.Collection(tasks,
+                t => Assert.Equal("Original Task", t.Title),
+                t => Assert.Equal("Active Task", t.Title),
+                t => Assert.Equal("Resolved Task", t.Title),
+                t => Assert.Equal("Removed Task", t.Title),
+                t => Assert.Equal("Closed Task", t.Title));
+            }
     }
 }
