@@ -1,0 +1,8 @@
+@startuml
+
+class Logger
+class Worker
+
+Worker *- Logger
+
+@enduml

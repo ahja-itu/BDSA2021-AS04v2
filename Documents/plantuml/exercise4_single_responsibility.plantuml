@@ -1,0 +1,14 @@
+@startuml
+
+class MonolithClass
+
+MonolithClass : + Settings[] settings
+MonolithClass : + Employee[] employees
+MonolithClass : + ICollection<float> salaries
+MonolithClass : + ReadConfig(string filename) : Setting[]
+MonolithClass : + WriteConfig(string filename, Setting[] settings) : void
+MonolithClass : + SyncWithDatabase() : void
+MonolithClass : + GetAllUsers() : User[]
+MonolithClass : + CalculateSalaries() : ICollection<(int, float)>
+MonolithClass : + SendPayslipsToEmployees() : void
+@enduml

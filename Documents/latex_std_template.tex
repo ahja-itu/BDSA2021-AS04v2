@@ -138,10 +138,98 @@ The following state diagram shows how a given Task's State will change over time
 \pagebreak
 \section*{Examples of violations of the SOLID principles}
 
-aaa
+\subsection*{Single Responsibility principle}
+
+Violating the single responsibility principle means that classes will hold more than one responsibility in terms of what they are used for. This is illustrated below:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.65]{../out/Documents/plantuml/exercise4_single_responsibility/exercise4_single_responsibility.png}
+    \caption{Violation of the Single Responsibility principle.}
+\end{figure}
+
+\subsection*{Open/closed principle}
+
+In object oriented programming, the principle about being allowed to extend existing functionality, but being prevented to modify it can be shown with a simple inheritance hierarchy.
+
+To violate this principle, the designers of the general \texttt{Animal} class have not paid attention to sue of inappropriate access modifiers, such that sub classes of \texttt{Animal} can modify the previously defined methods and fields coming from the super class.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.65]{../out/Documents/plantuml/exercise4_open_closed/exercise4_open_closed.png}
+    \caption{}
+\end{figure}
+
+\subsection*{Liskov's substitution principle}
+
+The following source code illustrates the missing use of Liskovs' substitution principle, where two classes of disjoint inheritance hierarchies implement the same function.
+
+\begin{lstlisting}[language=Java]
+class Dog
+{
+    public void Report()
+    {
+        Console.WriteLine("I'm a dog!");
+    }
+}
+
+class Cat
+{
+    public void Report()
+    {
+        Console.WriteLine("I'm a cat!);
+    }
+}
+
+class AnimalFactory
+{
+    public void reportAnimal(Object animal)
+    {
+        if (animal is Dog)
+        {
+            Dog dog = (Dog) animal;
+            dog.Report();
+        } else if (animal is Cat)
+        {
+            Cat cat = (Cat) animal;
+            cat.Report();
+        } else {
+            Console.WriteLine("What animal even is this??");
+        }
+    }
+}
+\end{lstlisting}
+
+\pagebreak
+\subsection*{Interface segregation principle}
+
+Here is an interface with too many different responsibilies, all that ultimately will serve a client, but they are of different responsibilies.
+
+\begin{lstlisting}[language=Java]
+interface IClientServable
+{
+  Report GetReport(int id);
+  Report[] AllReports();
+  int64 CalculateMonthlyPaycheckSum();
+  int64 CalculateMonthlyCostsForHousing();
+  Employee GetEmployee(int id);
+  Employee[] AllEmployees();
+  void SetDbContext(DBContext context);
+  void SetLogger(Logger logger);
+}
+  
+\end{lstlisting}
 
 
+\subsection*{Dependency Inversion principle}
 
+Here is a break on the Dependency Inversion principle, where another class, the \texttt{Logger} class is being composed by the \texttt{Worker} class to enable use of logging.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{../out/Documents/plantuml/exercise4_dependency_inversion/exercise4_dependency_inversion.png}
+  \caption{The worker uses the Logger class throughout its lifecycle}
+\end{figure}
 
 \end{document}
 
