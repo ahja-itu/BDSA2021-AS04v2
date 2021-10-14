@@ -1,0 +1,13 @@
+@startuml
+
+class Animal
+class Dog
+
+Animal <|-- Dog
+
+Animal : - bool Living
+Animal : + IsLiving() : bool
+Dog : - bool CanBark
+Dog : + IsBarking() : bool
+
+@enduml

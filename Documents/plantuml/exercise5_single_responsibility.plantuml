@@ -1,0 +1,24 @@
+@startuml
+
+
+class SettingsManager
+class ConfigManager
+class StorageManager
+class Payrollmanager
+class UserManager
+class User
+class EmployeeManager
+class CommunicationsManager
+
+class MonolithClass
+
+ConfigManager : + Settings[] settings
+EmployeeManager : + Employee[] employees
+Payrollmanager : + ICollection<float> salaries
+ConfigManager : + ReadConfig(string filename) : Setting[]
+ConfigManager : + WriteConfig(string filename, Setting[] settings) : void
+StorageManager : + SyncWithDatabase() : void
+UserManager : + GetAllUsers() : User[]
+Payrollmanager : + CalculateSalaries() : ICollection<(int, float)>
+CommunicationsManager : + SendPayslipsToEmployees() : void
+@enduml
