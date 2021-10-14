@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/macos,visualstudio,visualstudiocode,csharp,latex,dotnetcore
-# Edit at https://www.toptal.com/developers/gitignore?templates=macos,visualstudio,visualstudiocode,csharp,latex,dotnetcore
+# Created by https://www.toptal.com/developers/gitignore/api/latex,csharp,visualstudio,visualstudiocode,macos
+# Edit at https://www.toptal.com/developers/gitignore?templates=latex,csharp,visualstudio,visualstudiocode,macos
 
 ### Csharp ###
 ## Ignore Visual Studio temporary files, build results, and
@@ -391,15 +391,6 @@ FodyWeavers.xsd
 # JetBrains Rider
 .idea/
 *.sln.iml
-
-### DotnetCore ###
-# .NET Core build folders
-bin/
-obj/
-
-# Common node modules locations
-/node_modules
-/wwwroot/node_modules
 
 ### LaTeX ###
 ## Core latex/pdflatex auxiliary files:
@@ -910,5 +901,4 @@ Temporary Items
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
-# End of https://www.toptal.com/developers/gitignore/api/macos,visualstudio,visualstudiocode,csharp,latex,dotnetcore
-
+# End of https://www.toptal.com/developers/gitignore/api/latex,csharp,visualstudio,visualstudiocode,macos

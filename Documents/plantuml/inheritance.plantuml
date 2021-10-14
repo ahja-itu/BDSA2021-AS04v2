@@ -1,0 +1,4 @@
+@startuml
+Dessert <|-- SaltyDessert
+Dessert <|-- SweetDessert
+@enduml

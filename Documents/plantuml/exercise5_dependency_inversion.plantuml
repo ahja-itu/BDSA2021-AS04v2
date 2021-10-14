@@ -1,0 +1,15 @@
+@startuml
+class Logger
+class Worker
+interface ILoggerable
+
+ILoggerable <|-- Logger
+
+Worker ..> Logger
+Worker ..> ILoggerable 
+
+Worker : ILoggerable Logger
+Worker : Worker(ILoggerable logger) : Worker
+ILoggerable : Log(LogLevel logLevel, string message) : void
+Logger : Log(LogLevel logLevel, string message) : void
+@enduml

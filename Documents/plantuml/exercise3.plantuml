@@ -1,0 +1,21 @@
+@startuml
+'  The purpose of the diagram should be to document the main 
+' relationships between the entities and their multiplicity
+hide empty description
+[*] --> New
+New -> Deleted : <<Delete>>
+New --> Active : <<Update>>
+Active -> Removed : <<Delete>>
+Active -> Closed : <<Close>>
+Active --> Resolved : <<Update>>
+Resolved --> [*]
+Removed --> [*]
+Closed --> [*]
+Closed --> Active : <<Update>>
+
+
+Deleted : The entry was completely removed from the database
+Active : When a task is assigned to an user, \nthe state of the task changes to Active
+Removed: The state of the task is set to removed, \nbut is persisted in the database
+Resolved : The task has been completed and is now resolved.
+@enduml

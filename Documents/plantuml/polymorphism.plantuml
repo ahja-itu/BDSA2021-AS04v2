@@ -1,0 +1,19 @@
+@startuml
+interface Greetable
+
+class Doorman
+class Computer
+class GreeterConsumer
+
+Greetable <|-- Doorman
+Greetable <|-- Computer
+
+Doorman <-- GreeterConsumer
+Computer <-- GreeterConsumer
+
+Greetable : + Greet (string Name): void
+Doorman : + Greet (string Name) : void
+Computer : + Greet (string Name) : void
+GreeterConsumer : + GreetAll(Greetable[] greetable) : void
+
+@enduml
