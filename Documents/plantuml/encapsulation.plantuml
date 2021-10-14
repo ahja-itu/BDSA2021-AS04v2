@@ -1,0 +1,10 @@
+@@startuml
+
+class Greeter {
+    {field} - name : string
+    {method} + Greeter (string name) : Greeter
+    {method} + SetName (string name): void
+    {method} + Greet : void
+}
+
+@@enduml

@@ -1,0 +1,10 @@
+@startuml
+
+class User
+class Tag
+class Task
+
+User "0..1" -right- "0..*" Task : "                    "
+Task "0..*" -right- "0..*" Tag : "                    "
+
+@enduml¨
